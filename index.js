@@ -24,7 +24,10 @@ io.on("connection", socket => {
     });
     socket.broadcast
       .to(user.room)
-      .emit("message", { user: "Admin", text: `${user.name} has joined` });
+      .emit("message", {
+        user: "Admin",
+        text: `${user.name} has joined the chat!`
+      });
 
     socket.join(user.room);
 
