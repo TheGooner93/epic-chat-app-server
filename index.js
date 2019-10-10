@@ -19,12 +19,12 @@ io.on("connection", socket => {
     if (error) return callback(error);
 
     socket.emit("message", {
-      user: "admin",
-      text: `Hi ${user.name}! Welcome to the chat ${user.room}!`
+      user: "Admin",
+      text: `Hi ${user.name}! Welcome to the chat!`
     });
     socket.broadcast
       .to(user.room)
-      .emit("message", { user: "admin", text: `${user.name} has joined` });
+      .emit("message", { user: "Admin", text: `${user.name} has joined` });
 
     socket.join(user.room);
 
@@ -52,7 +52,7 @@ io.on("connection", socket => {
     const user = removeUser(socket.id);
     if (user) {
       io.to(user.room).emit("message", {
-        user: "admin",
+        user: "Admin",
         text: `${user.name} has left the chat`
       });
     }
